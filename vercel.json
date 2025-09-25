@@ -1,16 +1,6 @@
 {
   "version": 2,
   "name": "dental-records-backend",
-  "builds": [
-    {
-      "src": "api/index.ts",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["src/**", "package.json"],
-        "excludeFiles": ["**/*.test.ts", "**/*.spec.ts", "**/__tests__/**"]
-      }
-    }
-  ],
   "routes": [
     {
       "src": "/health",
