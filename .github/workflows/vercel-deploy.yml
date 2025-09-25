@@ -63,10 +63,6 @@ jobs:
     # Solo ejecutar tests en PRs y pushes que no sean a main
     if: github.event_name == 'pull_request' || github.ref != 'refs/heads/main'
     
-    defaults:
-      run:
-        working-directory: ./backend
-    
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -126,10 +122,6 @@ jobs:
     
     # Depende de tests (si existen)
     needs: [test]
-    
-    defaults:
-      run:
-        working-directory: ./backend
     
     environment:
       name: staging
@@ -201,10 +193,6 @@ jobs:
     
     # Solo en push a main o trigger manual a producción
     if: github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production')
-    
-    defaults:
-      run:
-        working-directory: ./backend
     
     environment:
       name: production
