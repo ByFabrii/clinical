@@ -8,10 +8,6 @@
     "dev": "nodemon src/server.ts",
     "build": "tsc && tsc-alias",
     "build:watch": "tsc --watch",
-    "build:vercel": "tsc --project tsconfig.production.json && tsc-alias",
-    "vercel-build": "npm run build",
-    "deploy": "vercel --prod",
-    "deploy:preview": "vercel",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",
@@ -27,8 +23,7 @@
     "test:unit": "vitest src/__tests__/unit --run",
     "test:unit:controllers": "vitest src/__tests__/unit/controllers --run",
     "test:clinics": "npm run test:unit:controllers && npm run test:integration:clinics && npm run test:e2e:clinics",
-    "test:patients": "npm run test:unit:controllers && npm run test:integration:patients && npm run test:e2e:patients",
-    "postinstall": "npm run build"
+    "test:patients": "npm run test:unit:controllers && npm run test:integration:patients && npm run test:e2e:patients"
   },
   "keywords": [
     "dental",
@@ -44,7 +39,6 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.39.3",
     "@types/nodemailer": "^7.0.1",
-    "@vercel/node": "^3.2.29",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
