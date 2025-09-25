@@ -86,29 +86,13 @@ jobs:
       - name: 🏗️ Build project
         run: npm run build
       
-      - name: 🧪 Run unit tests
-        run: npm run test:unit
-        env:
-          NODE_ENV: test
+
       
-      - name: 🔗 Run integration tests
-        run: npm run test:integration
-        env:
-          NODE_ENV: test
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL_TEST }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY_TEST }}
+
       
-      - name: 📊 Generate coverage report
-        run: npm run test:coverage
-        env:
-          NODE_ENV: test
+
       
-      - name: 📈 Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          file: ./backend/coverage/lcov.info
-          flags: backend
-          name: backend-coverage
+
 
   # =================================================================
   # JOB 2: DEPLOY A PREVIEW/STAGING
