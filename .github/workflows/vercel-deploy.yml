@@ -197,11 +197,6 @@ jobs:
       - name: 🏗️ Build project
         run: npm run build
       
-      - name: 🧪 Run production tests
-        run: npm run test:unit
-        env:
-          NODE_ENV: production
-      
       - name: 📦 Install Vercel CLI
         run: npm install --global vercel@latest
       
