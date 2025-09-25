@@ -1,0 +1,73 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    /* Optimizaciones para producción */
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    
+    /* Directorios optimizados para Vercel */
+    "rootDir": "./",
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    
+    /* Optimizaciones de build */
+    "declaration": false,                       /* No generar .d.ts en producción */
+    "declarationMap": false,                    /* No generar mapas de declaración */
+    "sourceMap": false,                         /* No generar source maps en producción */
+    "removeComments": true,                     /* Remover comentarios para reducir tamaño */
+    "inlineSourceMap": false,                   /* No incluir source maps inline */
+    "inlineSources": false,                     /* No incluir fuentes inline */
+    
+    /* Verificaciones estrictas mantenidas */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    
+    /* Optimizaciones de rendimiento */
+    "skipLibCheck": true,                       /* Acelera compilación */
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    
+    /* Configuración específica para serverless */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    
+    /* Paths para imports absolutos */
+    "paths": {
+      "@/*": ["*"],
+      "@config/*": ["config/*"],
+      "@controllers/*": ["controllers/*"],
+      "@middleware/*": ["middleware/*"],
+      "@models/*": ["models/*"],
+      "@routes/*": ["routes/*"],
+      "@services/*": ["services/*"],
+      "@types/*": ["types/*"],
+      "@utils/*": ["utils/*"]
+    }
+  },
+  
+  /* Archivos incluidos para producción */
+  "include": [
+    "src/**/*",
+    "src/**/*.json",
+    "api/**/*"
+  ],
+  
+  /* Archivos excluidos en producción */
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/__tests__/**/*",
+    "**/__mocks__/**/*",
+    "src/test/**/*",
+    "*.config.js",
+    "*.config.ts"
+  ]
+}

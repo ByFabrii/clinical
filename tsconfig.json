@@ -1,0 +1,70 @@
+{
+  "compilerOptions": {
+    /* Configuración básica */
+    "target": "ES2020",                          /* Versión de JavaScript objetivo */
+    "lib": ["ES2020"],                          /* Librerías incluidas */
+    "module": "commonjs",                       /* Sistema de módulos */
+    "moduleResolution": "node",                 /* Resolución de módulos estilo Node.js */
+    "allowSyntheticDefaultImports": true,       /* Permite imports por defecto sintéticos */
+    "esModuleInterop": true,                    /* Interoperabilidad con módulos ES */
+    
+    /* Directorios */
+    "rootDir": "./src",                         /* Directorio raíz del código fuente */
+    "outDir": "./dist",                        /* Directorio de salida compilado */
+    "baseUrl": "./src",                        /* URL base para resolución de módulos */
+    
+    /* Paths para imports absolutos */
+    "paths": {
+      "@/*": ["*"],
+      "@config/*": ["config/*"],
+      "@controllers/*": ["controllers/*"],
+      "@middleware/*": ["middleware/*"],
+      "@models/*": ["models/*"],
+      "@routes/*": ["routes/*"],
+      "@services/*": ["services/*"],
+      "@types/*": ["types/*"],
+      "@utils/*": ["utils/*"]
+    },
+    
+    /* Verificación de tipos */
+    "strict": true,                             /* Habilita todas las verificaciones estrictas */
+    "noImplicitAny": true,                      /* Error en expresiones con tipo 'any' implícito */
+    "strictNullChecks": true,                   /* Verificación estricta de null/undefined */
+    "strictFunctionTypes": true,                /* Verificación estricta de tipos de función */
+    "noImplicitReturns": true,                  /* Error cuando no todas las rutas retornan valor */
+    "noFallthroughCasesInSwitch": true,         /* Error en casos switch sin break */
+    "noUncheckedIndexedAccess": true,           /* Verificación de acceso a índices */
+    
+    /* Configuración adicional */
+    "forceConsistentCasingInFileNames": true,   /* Fuerza consistencia en nombres de archivos */
+    "skipLibCheck": true,                       /* Omite verificación de archivos .d.ts */
+    "resolveJsonModule": true,                  /* Permite importar archivos JSON */
+    "declaration": true,                        /* Genera archivos .d.ts */
+    "declarationMap": true,                     /* Genera mapas para archivos .d.ts */
+    "sourceMap": true,                          /* Genera archivos .map para debugging */
+    "removeComments": false,                    /* Mantiene comentarios en el código compilado */
+    "experimentalDecorators": true,             /* Habilita decoradores experimentales */
+    "emitDecoratorMetadata": true               /* Emite metadatos para decoradores */
+  },
+  
+  /* Archivos incluidos */
+  "include": [
+    "src/**/*",
+    "src/**/*.json"
+  ],
+  
+  /* Archivos excluidos */
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ],
+  
+  /* Configuración de ts-node para desarrollo */
+  "ts-node": {
+    "require": ["tsconfig-paths/register"],
+    "files": true,
+    "experimentalSpecifierResolution": "node"
+  }
+}

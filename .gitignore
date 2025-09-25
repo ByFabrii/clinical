@@ -1,0 +1,254 @@
+# =================================================================
+# GITIGNORE - SISTEMA DE EXPEDIENTES CLÍNICOS DENTALES
+# =================================================================
+
+# -----------------------------------------------------------------
+# ARCHIVOS DE CONFIGURACIÓN SENSIBLES
+# -----------------------------------------------------------------
+# Variables de entorno (contienen claves secretas)
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Archivos de configuración con credenciales
+config/database.json
+config/secrets.json
+
+# -----------------------------------------------------------------
+# DEPENDENCIAS DE NODE.JS
+# -----------------------------------------------------------------
+# Directorio de módulos de Node.js
+node_modules/
+
+# Archivos de lock de gestores de paquetes
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Directorio de caché de npm
+.npm
+
+# Directorio de caché de yarn
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# -----------------------------------------------------------------
+# ARCHIVOS COMPILADOS Y BUILD
+# -----------------------------------------------------------------
+# Directorio de compilación de TypeScript
+dist/
+build/
+
+# Archivos de mapas de código fuente
+*.map
+
+# Archivos de declaración de TypeScript generados
+*.d.ts
+!src/**/*.d.ts
+
+# -----------------------------------------------------------------
+# LOGS Y ARCHIVOS TEMPORALES
+# -----------------------------------------------------------------
+# Archivos de log
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Archivos temporales
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# Archivos de proceso
+*.pid
+*.seed
+*.pid.lock
+
+# -----------------------------------------------------------------
+# ARCHIVOS DE COBERTURA DE PRUEBAS
+# -----------------------------------------------------------------
+# Directorio de cobertura de pruebas
+coverage/
+*.lcov
+.nyc_output
+
+# -----------------------------------------------------------------
+# ARCHIVOS DE EDITORES E IDEs
+# -----------------------------------------------------------------
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# -----------------------------------------------------------------
+# ARCHIVOS DEL SISTEMA OPERATIVO
+# -----------------------------------------------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# -----------------------------------------------------------------
+# ARCHIVOS ESPECÍFICOS DEL PROYECTO MÉDICO
+# -----------------------------------------------------------------
+# Archivos de imágenes médicas de prueba
+uploads/test/
+uploads/temp/
+
+# Archivos de respaldo de base de datos
+*.sql.backup
+*.dump
+
+# Archivos de certificados SSL (si se almacenan localmente)
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Archivos de configuración de producción
+config/production.json
+
+# -----------------------------------------------------------------
+# HERRAMIENTAS DE DESARROLLO
+# -----------------------------------------------------------------
+# ESLint cache
+.eslintcache
+
+# Prettier cache
+.prettiercache
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# -----------------------------------------------------------------
+# ARCHIVOS DE DOCUMENTACIÓN GENERADOS
+# -----------------------------------------------------------------
+# Documentación generada automáticamente
+docs/generated/
+api-docs/
+
+# -----------------------------------------------------------------
+# ARCHIVOS DE MONITOREO Y ANÁLISIS
+# -----------------------------------------------------------------
+# Archivos de análisis de rendimiento
+*.cpuprofile
+*.heapprofile
+*.heapsnapshot
+
+# Archivos de monitoreo
+monitoring/
+metrics/
+
+# =================================================================
+# NOTAS IMPORTANTES:
+# =================================================================
+#
+# 1. NUNCA subas archivos .env al repositorio
+# 2. Los archivos de logs pueden contener información sensible
+# 3. Las imágenes médicas de prueba no deben subirse
+# 4. Mantén este archivo actualizado según las necesidades
+# 5. Revisa regularmente que no se suban archivos sensibles
+#
+# =================================================================
