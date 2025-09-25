@@ -23,7 +23,6 @@ config/secrets.json
 node_modules/
 
 # Archivos de lock de gestores de paquetes
-package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
