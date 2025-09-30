@@ -29,25 +29,6 @@ const consoleFormat = winston.format.combine(
     })
 );
 
-// Configuración de transporte para archivos con rotación diaria (solo en desarrollo)
-const fileRotateTransport = new DailyRotateFile({
-    filename: path.join('logs', 'application-%DATE%.log'),
-    datePattern: 'YYYY-MM-DD',
-    maxSize: '20m',
-    maxFiles: '14d',
-    format: logFormat,
-});
-
-// Configuración de transporte para errores (solo en desarrollo)
-const errorFileTransport = new DailyRotateFile({
-    filename: path.join('logs', 'error-%DATE%.log'),
-    datePattern: 'YYYY-MM-DD',
-    level: 'error',
-    maxSize: '20m',
-    maxFiles: '30d',
-    format: logFormat
-});
-
 // Función para obtener los transportes según el entorno
 const getTransports = () => {
     const transports: winston.transport[] = [];
@@ -59,6 +40,25 @@ const getTransports = () => {
     
     // Archivos solo en desarrollo (no en Vercel/producción)
     if (process.env.NODE_ENV !== 'production') {
+        // Configuración de transporte para archivos con rotación diaria
+        const fileRotateTransport = new DailyRotateFile({
+            filename: path.join('logs', 'application-%DATE%.log'),
+            datePattern: 'YYYY-MM-DD',
+            maxSize: '20m',
+            maxFiles: '14d',
+            format: logFormat,
+        });
+
+        // Configuración de transporte para errores
+        const errorFileTransport = new DailyRotateFile({
+            filename: path.join('logs', 'error-%DATE%.log'),
+            datePattern: 'YYYY-MM-DD',
+            level: 'error',
+            maxSize: '20m',
+            maxFiles: '30d',
+            format: logFormat
+        });
+        
         transports.push(fileRotateTransport);
         transports.push(errorFileTransport);
     }
