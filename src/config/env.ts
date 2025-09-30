@@ -90,22 +90,11 @@ export interface AppConfig {
 function requireEnvVar(name: string): string {
   const value = process.env[name];
   if (!value) {
-    const errorMessage = 
+    throw new Error(
       `❌ Variable de entorno requerida faltante: ${name}\n` +
       `📝 Agrega esta variable a tu archivo .env\n` +
-      `📋 Consulta .env.example para ver el formato correcto\n` +
-      `🔧 Para Vercel: Settings > Environment Variables\n` +
-      `🌍 Entorno actual: ${process.env.NODE_ENV || 'undefined'}`;
-    
-    // En producción, también loggear el error para debugging
-    if (process.env.NODE_ENV === 'production') {
-      console.error('CRITICAL ENV ERROR:', errorMessage);
-      console.error('Available env vars:', Object.keys(process.env).filter(key => 
-        !key.includes('SECRET') && !key.includes('KEY') && !key.includes('PASSWORD')
-      ).sort());
-    }
-    
-    throw new Error(errorMessage);
+      `📋 Consulta .env.example para ver el formato correcto`
+    );
   }
   return value;
 }
