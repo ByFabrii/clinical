@@ -71,7 +71,7 @@ export function createApp(): Application {
       directives: {
         defaultSrc: ["'self'"],
         styleSrc: ["'self'", "'unsafe-inline'"],
-        scriptSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"], // Necesario para Swagger UI
         imgSrc: ["'self'", "data:", "https:"],
         connectSrc: ["'self'", config.supabase.url],
         fontSrc: ["'self'"],
