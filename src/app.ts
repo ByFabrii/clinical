@@ -64,29 +64,44 @@ export function createApp(): Application {
   /**
    * Helmet - Configuración de headers de seguridad
    * Protege contra vulnerabilidades comunes
+   * 
+   * NOTA: CSP se deshabilita para /api-docs para permitir Swagger UI
    */
-  app.use(helmet({
-    // Configuración específica para aplicaciones médicas
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        styleSrc: ["'self'", "'unsafe-inline'"],
-        scriptSrc: ["'self'", "'unsafe-inline'"], // Necesario para Swagger UI
-        imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: ["'self'", config.supabase.url],
-        fontSrc: ["'self'"],
-        objectSrc: ["'none'"],
-        mediaSrc: ["'self'"],
-        frameSrc: ["'none'"]
-      }
-    },
-    // Headers adicionales para cumplimiento médico
-    hsts: {
-      maxAge: 31536000, // 1 año
-      includeSubDomains: true,
-      preload: true
+  app.use((req, res, next) => {
+    // Deshabilitar CSP solo para Swagger UI
+    if (req.path.startsWith('/api-docs')) {
+      return helmet({
+        contentSecurityPolicy: false,
+        hsts: {
+          maxAge: 31536000,
+          includeSubDomains: true,
+          preload: true
+        }
+      })(req, res, next);
     }
-  }));
+    
+    // CSP normal para todas las demás rutas
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
+          scriptSrc: ["'self'"],
+          imgSrc: ["'self'", "data:", "https:"],
+          connectSrc: ["'self'", config.supabase.url],
+          fontSrc: ["'self'"],
+          objectSrc: ["'none'"],
+          mediaSrc: ["'self'"],
+          frameSrc: ["'none'"]
+        }
+      },
+      hsts: {
+        maxAge: 31536000,
+        includeSubDomains: true,
+        preload: true
+      }
+    })(req, res, next);
+  });
 
   /**
    * CORS - Configuración de Cross-Origin Resource Sharing
