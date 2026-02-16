@@ -58,6 +58,26 @@ export function createApp(): Application {
   const app: Application = express();
 
   // =================================================================
+  // CONFIGURACIÓN DE PROXY
+  // =================================================================
+  
+  /**
+   * Trust Proxy - Configuración para aplicaciones detrás de proxy reverso
+   * 
+   * En producción, la aplicación está detrás de un proxy reverso (nginx/Coolify)
+   * que envía headers X-Forwarded-* para identificar la IP real del cliente.
+   * 
+   * Configuramos Express para confiar en el primer proxy (nginx).
+   * Esto es necesario para:
+   * - Rate limiting correcto (identificar IPs reales)
+   * - Logs de IP correctos
+   * - req.ip y req.ips funcionen correctamente
+   */
+  if (isProduction) {
+    app.set('trust proxy', 1); // Confiar en el primer proxy (nginx)
+  }
+
+  // =================================================================
   // MIDDLEWARES DE SEGURIDAD
   // =================================================================
 
