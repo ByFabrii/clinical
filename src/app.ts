@@ -143,7 +143,7 @@ export function createApp(): Application {
       }
 
       // USAR VARIABLE DE ENTORNO PRODUCTION_PORT DEL .env
-      if (isProduction && origin === 'http://localhost:' + process.env.PRODUCTION_PORT) {
+      if (origin === 'http://localhost:' + process.env.PRODUCTION_PORT) {
         return callback(null, true);
       }
 
