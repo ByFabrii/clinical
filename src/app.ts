@@ -142,6 +142,11 @@ export function createApp(): Application {
         return callback(null, true);
       }
 
+      // USAR VARIABLE DE ENTORNO PRODUCTION_PORT DEL .env
+      if (isProduction && origin === 'http://localhost:' + process.env.PRODUCTION_PORT) {
+        return callback(null, true);
+      }
+
       // Rechazar otros origins
       const msg = `CORS: Origin ${origin} no está permitido`;
       return callback(new Error(msg), false);
