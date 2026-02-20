@@ -257,7 +257,7 @@ function loadConfig(): AppConfig {
       });
     }
     
-    const corsOrigins = getEnvArray('CORS_ORIGINS', ['http://localhost:3000']);
+    const corsOrigins = getEnvArray('CORS_ORIGIN', ['http://localhost:3000']);
     const rateLimitWindowMs = getEnvNumber('RATE_LIMIT_WINDOW_MS', 15 * 60 * 1000); // 15 min
     const rateLimitMaxRequests = getEnvNumber('RATE_LIMIT_MAX_REQUESTS', 100);
     
