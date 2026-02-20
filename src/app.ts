@@ -137,18 +137,30 @@ export function createApp(): Application {
         return callback(null, true);
       }
 
-      // En desarrollo, permitir localhost con cualquier puerto
-      if (isDevelopment && origin.includes('localhost')) {
+      // En desarrollo, permitir cualquier localhost sin importar puerto
+      if (isDevelopment && origin.startsWith('http://localhost:')) {
+        logger.debug(`✅ CORS permitido en desarrollo: ${origin}`);
         return callback(null, true);
       }
 
-      // USAR VARIABLE DE ENTORNO PRODUCTION_PORT DEL .env
-      if (origin === 'http://localhost:' + process.env.PRODUCTION_PORT) {
-        return callback(null, true);
+      // En producción, permitir localhost con PRODUCTION_PORT específico
+      if (isProduction && process.env.PRODUCTION_PORT) {
+        const allowedLocalhost = `http://localhost:${process.env.PRODUCTION_PORT}`;
+        if (origin === allowedLocalhost) {
+          logger.debug(`✅ CORS permitido con PRODUCTION_PORT: ${origin}`);
+          return callback(null, true);
+        }
       }
 
       // Rechazar otros origins
       const msg = `CORS: Origin ${origin} no está permitido`;
+      logger.warn(msg, {
+        origin,
+        allowedOrigins: config.security.corsOrigins,
+        environment: config.server.environment,
+        productionPort: process.env.PRODUCTION_PORT,
+        timestamp: new Date().toISOString()
+      });
       return callback(new Error(msg), false);
     },
     credentials: true, // Permitir cookies y headers de autenticación
@@ -161,7 +173,8 @@ export function createApp(): Application {
       'Authorization',
       'X-Clinic-ID', // Header personalizado para multi-tenant
       'X-Request-ID' // Header para trazabilidad
-    ]
+    ],
+    maxAge: 86400 // Cache preflight durante 24 horas
   }));
 
   /**
